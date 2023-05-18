@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useLayoutEffect, useRef, useState } from "react";
+import "./App.css";
+import LogicalClick from "./components/LogicalClick/index";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ball, setBall] = useState([]);
+
+  function handleClick(event) {
+    console.log("foi");
+    let click = {
+      clientX: event.clientX,
+      clientY: event.clientY,
+    };
+    setBall((dot) => [...dot, click]);
+  }
+
+  // const containerRef = useRef(null);
+
+  // useLayoutEffect(() => {
+  //   console.log(containerRef.current);
+  //   const element = document.getElementById("my-element");
+  //   element!.addEventListener("mousemove", (event) => {
+  //     let x = event.clientX;
+  //     let y = event.clientY;
+  //     console.log(`A posição atual do cursor do mouse é: (${x}, ${y})`);
+  //   });
+  // });
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className={"container"}>
+      {ball.map((dot, index) => (
+        <div key={index} className={"ball"} onClick={handleClick} />
+      ))}
+      {/* <LogicalClick
+        ref={containerRef}
+        x={x}
+        y={y}
+        qtyBall={ball}
+        sumBall={setBall}
+      /> */}
+    </div>
+  );
 }
 
-export default App
+export default App;
