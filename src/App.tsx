@@ -13,8 +13,19 @@ function App() {
     setBall((dot) => [...dot, click]);
   }
 
+  function handleDelete(event) {
+    event.stopPropagation();
+    console.log("apagou");
+
+    setBall((dot) => {
+      const newArray = [...ball].slice(0, -1);
+      return newArray;
+    });
+  }
+
   return (
     <div className={"container"} onClick={handleClick}>
+      <button onClick={handleDelete}>Apagar</button>
       {ball.map((dot, index) => (
         <span
           key={index}
