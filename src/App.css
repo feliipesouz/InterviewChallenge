@@ -1,17 +1,28 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
 .container {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   height: 100%;
   width: 100%;
-  position: absolute;
+  display: block;
   background-color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .ball {
+  display: block;
   width: 16px;
   height: 16px;
   border-radius: 100%;
   background-color: brown;
+  position: absolute;
+  left: 180px;
+  top: 180px;
 }

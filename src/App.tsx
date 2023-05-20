@@ -1,43 +1,27 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import LogicalClick from "./components/LogicalClick/index";
 
 function App() {
   const [ball, setBall] = useState([]);
 
   function handleClick(event) {
-    console.log("foi");
-    let click = {
+    const click = {
       clientX: event.clientX,
       clientY: event.clientY,
     };
+    console.log(click);
     setBall((dot) => [...dot, click]);
   }
 
-  // const containerRef = useRef(null);
-
-  // useLayoutEffect(() => {
-  //   console.log(containerRef.current);
-  //   const element = document.getElementById("my-element");
-  //   element!.addEventListener("mousemove", (event) => {
-  //     let x = event.clientX;
-  //     let y = event.clientY;
-  //     console.log(`A posição atual do cursor do mouse é: (${x}, ${y})`);
-  //   });
-  // });
-
   return (
-    <div className={"container"}>
+    <div className={"container"} onClick={handleClick}>
       {ball.map((dot, index) => (
-        <div key={index} className={"ball"} onClick={handleClick} />
+        <span
+          key={index}
+          className={"ball"}
+          style={{ left: dot.clientX, top: dot.clientY }}
+        />
       ))}
-      {/* <LogicalClick
-        ref={containerRef}
-        x={x}
-        y={y}
-        qtyBall={ball}
-        sumBall={setBall}
-      /> */}
     </div>
   );
 }
