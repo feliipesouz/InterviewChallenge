@@ -34,6 +34,12 @@ function App() {
   function handleDid(event) {
     event.stopPropagation();
     console.log("Did");
+
+    const recoverBall = ballUndid[ballUndid.length - 1];
+    setBallUndid((dot) => {
+      const newArray = [...dot].slice(0, -1);
+      return newArray;
+    });
   }
 
   return (
