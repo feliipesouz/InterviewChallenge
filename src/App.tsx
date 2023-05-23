@@ -3,6 +3,7 @@ import "./App.css";
 
 function App() {
   const [ball, setBall] = useState([]);
+  const [ballUndid, setBallUndid] = useState([]);
 
   function handleClick(event) {
     const click = {
@@ -17,15 +18,28 @@ function App() {
     event.stopPropagation();
     console.log("apagou");
 
+    if (ball.length === 0) {
+      return;
+    }
+
+    const lastItem = ball[ball.length - 1];
+    setBallUndid((dot) => [...dot, lastItem]);
+
     setBall((dot) => {
       const newArray = [...ball].slice(0, -1);
       return newArray;
     });
   }
 
+  function handleDid(event) {
+    event.stopPropagation();
+    console.log("Did");
+  }
+
   return (
     <div className={"container"} onClick={handleClick}>
       <button onClick={handleDelete}>Apagar</button>
+      <button onClick={handleDid}>Refazer</button>
       {ball.map((dot, index) => (
         <span
           key={index}
