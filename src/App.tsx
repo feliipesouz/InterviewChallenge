@@ -35,9 +35,13 @@ function App() {
     event.stopPropagation();
     console.log("Did");
 
+   
+
     const recoverBall = ballUndid[ballUndid.length - 1];
+    setBall((dot) => [...ball, recoverBall]);
+
     setBallUndid((dot) => {
-      const newArray = [...dot].slice(0, -1);
+      const newArray = [...ballUndid].slice(0, -1);
       return newArray;
     });
   }
