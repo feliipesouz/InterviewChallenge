@@ -35,7 +35,9 @@ function App() {
     event.stopPropagation();
     console.log("Did");
 
-   
+    if (ballUndid.length === 0) {
+      return;
+    }
 
     const recoverBall = ballUndid[ballUndid.length - 1];
     setBall((dot) => [...ball, recoverBall]);
